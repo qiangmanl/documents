@@ -1,0 +1,7 @@
+{
+	"door" : "A",
+	"name": "test",
+	"port" : "8910",
+	"init" : 1 ,
+	"directory" : ".HAllow"
+}

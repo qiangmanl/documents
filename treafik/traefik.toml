@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik:v2.5
+    command:
+      - --api.insecure=true
+      - --providers.docker
+    ports:
+      - "80:80"
+      - "8081:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  service1:
+    image: containous/whoami   
+    labels:
+      - "traefik.http.routers.service1_router.rule=Host(`jsonplaceholder.typicode.com`) && PathPrefix(`/posts`)"
+      - "traefik.http.services.service1_service.loadbalancer.server.port=7001"
+
+  service2:
+    image: containous/whoami   
+    labels:
+      - "traefik.http.routers.service2_router.rule=Host(`jsonplaceholder.typicode.com`) && PathPrefix(`/posts`)"
+      - "traefik.http.services.service2_service.loadbalancer.server.port=7002"
+

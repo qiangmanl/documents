@@ -1,0 +1,83 @@
+2023-12-06 09:43:15.325 | ERROR    | logger:wrapper:72 - division by zero
+2023-12-06 09:43:21.419 | ERROR    | logger:wrapper:72 - division by zero
+2023-12-06 09:43:23.020 | ERROR    | logger:wrapper:72 - division by zero
+2023-12-06 10:00:34.403 | ERROR    | logger:wrapper:53 - division by zero
+2023-12-06 10:01:05.520 | ERROR    | logger:wrapper:53 - sdadsa
+2023-12-06 10:01:45.231 | ERROR    | logger:wrapper:52 - sdadsa
+2023-12-06 10:01:53.499 | ERROR    | logger:wrapper:58 - eror Not an available courier!
+2023-12-06 10:02:13.792 | ERROR    | logger:wrapper:58 - eror Not an available courier!
+Traceback (most recent call last):
+
+  File "/home/yang/OneDrive/documents/logger/main.py", line 6, in <module>
+    f()
+    └ <function doubt.<locals>.decorator.<locals>.wrapper at 0x7f31b74a9ee0>
+
+> File "/home/yang/OneDrive/documents/logger/logger.py", line 48, in wrapper
+    result = func(*args, **kw)
+             │     │       └ {}
+             │     └ ()
+             └ <function f at 0x7f31b81a51c0>
+
+  File "/home/yang/OneDrive/documents/logger/main.py", line 4, in f
+    raise Exception("sdadsa")
+
+Exception: sdadsa
+2023-12-06 10:03:14.703 | WARNING  | logger:wrapper:54 - sdadsa
+2023-12-06 10:06:31.571 | WARNING  | logger:wrapper:45 - sdadsa
+2023-12-06 10:06:31.571 | ERROR    | logger:wrapper:84 - division by zero
+Traceback (most recent call last):
+
+  File "/home/yang/OneDrive/documents/logger/main.py", line 19, in <module>
+    asyncio.get_event_loop().run_until_complete(main())
+    │       │                                   └ <function main at 0x7f32fd110540>
+    │       └ <built-in function get_event_loop>
+    └ <module 'asyncio' from '/home/yang/miniconda3/envs/test/lib/python3.11/asyncio/__init__.py'>
+
+  File "/home/yang/miniconda3/envs/test/lib/python3.11/asyncio/base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7f32fc734900>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/home/yang/miniconda3/envs/test/lib/python3.11/asyncio/base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7f32fc736700>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/home/yang/miniconda3/envs/test/lib/python3.11/asyncio/base_events.py", line 1922, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7f32fce1cc20>
+    └ <Handle <TaskStepMethWrapper object at 0x7f32fc472b30>()>
+  File "/home/yang/miniconda3/envs/test/lib/python3.11/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x7f32fc472b30>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x7f32fc472b30>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x7f32fc472b30>()>
+
+  File "/home/yang/OneDrive/documents/logger/main.py", line 17, in main
+    x = await get()
+              └ <function adoubt.<locals>.decorator.<locals>.wrapper at 0x7f32fc491f80>
+
+> File "/home/yang/OneDrive/documents/logger/logger.py", line 76, in wrapper
+    result = await func(*args, **kw)
+                   │     │       └ {}
+                   │     └ ()
+                   └ <function get at 0x7f32fc6a5260>
+
+  File "/home/yang/OneDrive/documents/logger/main.py", line 13, in get
+    1/0
+
+ZeroDivisionError: division by zero
+2023-12-06 10:06:42.223 | WARNING  | logger:wrapper:45 - sdadsa
+2023-12-06 10:06:42.223 | WARNING  | logger:wrapper:82 - division by zero
+2023-12-06 10:09:47.557 | WARNING  | logger:wrapper:45 - sdadsa
+2023-12-06 10:10:03.137 | WARNING  | logger:wrapper:45 - sdadsa
+2023-12-06 10:10:49.802 | WARNING  | logger:wrapper:45 - sdadsa
+2023-12-06 10:10:49.802 | WARNING  | logger:wrapper:82 - division by zero
+2023-12-06 10:11:08.109 | WARNING  | logger:wrapper:45 - sdadsa
+2023-12-06 10:11:23.209 | WARNING  | logger:wrapper:45 - sdadsa
+2023-12-06 10:11:43.031 | WARNING  | logger:wrapper:45 - sdadsa
+2023-12-06 10:11:51.573 | WARNING  | logger:wrapper:45 - sdadsa
+2023-12-06 10:18:09.981 | WARNING  | logger:wrapper:52 - sdadsa
+2023-12-06 10:18:29.615 | WARNING  | logger:wrapper:54 - sdadsa
+2023-12-07 14:39:05.734 | WARNING  | logger:wrapper:54 - sdadsa

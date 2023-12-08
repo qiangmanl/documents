@@ -1,0 +1,24 @@
+语音识别：
+官网：https://github.com/openai/whisper
+先安装 whisper 注意与pip在线仓库的whisper冲突，安装路径应该为pip install git+https://github.com/openai/whisper.git 
+更新：
+pip install --upgrade --no-deps --force-reinstall git+https://github.com/openai/whisper.git
+
+
+
+model等级
+Size	Parameters	English-only model	Multilingual model	Required VRAM	Relative speed
+tiny	39 M	        tiny.en	                    tiny	         ~1 GB	               ~32x
+base	74 M	        base.en	                    base	         ~1 GB	               ~16x
+small	244 M	        small.en	            small	         ~2 GB	               ~6x
+medium	769 M	       medium.en	            medium	         ~5 GB	               ~2x
+large	1550 M	        N/A	                    large	        ~10 GB	               1x
+
+使用：
+import whisper
+#加载模型，可选等级
+model = whisper.load_model("base")
+
+#识别语音
+result = model.transcribe("audio.mp3")
+print(result["text"])

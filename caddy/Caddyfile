@@ -1,0 +1,13 @@
+
+pan.erpnext-ha.com {
+	tls /etc/caddy/tls/erpnext-ha.com.crt /etc/caddy/tls/private.key
+	reverse_proxy 192.168.99.216:8600
+	reverse_proxy 192.168.99.216:8601
+}
+
+
+
+erp.erpnext-ha.com {
+	tls /etc/caddy/tls/erpnext-ha.com.crt /etc/caddy/tls/private.key
+	reverse_proxy 192.168.99.216:8081
+}

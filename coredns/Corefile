@@ -1,0 +1,16 @@
+
+yang.lo:53 {
+    hosts /etc/coredns/hosts
+    log
+}
+
+
+ihotel.com:53 {
+    hosts /etc/coredns/com
+    log
+}
+
+.:53 {
+    forward . 218.85.157.99:53
+    log
+}

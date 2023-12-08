@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>显示输入内容</title>
+</head>
+<body>
+	<label>输入索引：</label>
+	<input type="text" id="input-box" onkeyup="showValues()">
+	
+	<div id="display"></div>
+
+	<script>
+		var l = [1,2,4,5,3,1,6,57,8,3,4,65];
+
+		function showValues() {
+			var index = document.getElementById("input-box").value;
+			var display = document.getElementById("display");
+			display.innerHTML = "";
+
+			for (var i = index; i < l.length; i++) {
+				var value = l[i];
+				var div = document.createElement("div");
+				div.innerHTML = value;
+				display.appendChild(div);
+			}
+		}
+	</script>
+</body>
+</html>

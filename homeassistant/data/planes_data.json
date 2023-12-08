@@ -1,0 +1,50 @@
+
+[
+    {
+        "area" : "17F",
+        "planes" :[{
+                "type" : "rest",
+                "alias" : "1701"
+            },
+            {
+                "type" : "rest",
+                "alias" : "1702"
+            },
+            {
+                "type" : "rest",
+                "alias" : "1703"
+            },
+            {
+                "type" : "rest",
+                "alias" : "1704"
+            },  
+            {
+                "type" : "rest",
+                "alias" : "1705"
+        }]
+    },
+    {
+        "area" : "18F",
+        "planes" :[{
+                "type" : "rest",
+                "alias" : "1801"
+            },
+            {
+                "type" : "rest",
+                "alias" : "1802"
+            },
+            {
+                "type" : "rest",
+                "alias" : "1803"
+            },
+            {
+                "type" : "rest",
+                "alias" : "1804"
+            },  
+            {
+                "type" : "rest",
+                "alias" : "1805"
+        }]
+    }
+
+]

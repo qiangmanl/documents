@@ -1,0 +1,16 @@
+erp.ihotel.com {
+	tls /home/yang/coredns/ihotel.com.crt /home/yang/coredns/private.key
+	reverse_proxy {
+		to yang.lo:8080
+	}
+}
+
+minio0.ihotel.com {
+	tls /home/yang/coredns/ihotel.com.crt /home/yang/coredns/private.key
+	reverse_proxy {
+		to yang.lo:8600
+		to yang.lo:8601
+		to yang.lo:8602
+		to yang.lo:8603
+	}
+}
