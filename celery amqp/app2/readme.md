@@ -13,7 +13,6 @@ print(x.successful())
 #True
 from tasks import add
 result = add.delay(4,4)
-
 result.get()
 
 

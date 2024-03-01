@@ -30,20 +30,20 @@ app.conf.update(
 
 
 # # from celery.schedules import crontab
-app.conf.beat_schedule = {
-    'pop_l': {
-        'task': 'tasks.pop_l',
-        'schedule':   crontab(minute='*/1'),
+# app.conf.beat_schedule = {
+#     'pop_l': {
+#         'task': 'tasks.pop_l',
+#         'schedule':   crontab(minute='*/1'),
      
-    },
-    'add': {
-        'task': 'tasks.add',
-        #'schedule':   crontab(minute='*/1'),
-        'schedule': timedelta(seconds=3),
-        # 每周一早八点
+#     },
+#     'add': {
+#         'task': 'tasks.add',
+#         #'schedule':   crontab(minute='*/1'),
+#         'schedule': timedelta(seconds=3),
+#         # 每周一早八点
 
-        # 'schedule': crontab(hour=8, day_of_week=1), 
-        'args': (12,14),
-    }
+#         # 'schedule': crontab(hour=8, day_of_week=1), 
+#         'args': (12,14),
+#     }
     
-}
+# }

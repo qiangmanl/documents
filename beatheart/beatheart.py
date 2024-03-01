@@ -1,3 +1,21 @@
+"""
+Usage:
+    import asyncio          
+    from beatheart import looper, MuitiTask, SingleTask
+    class Test:
+        def __init__(self):
+            self.x = 1
+            
+        async def add_x(self,**kwargs):
+            self.x += 1
+            await asyncio.sleep(0)
+            print(self.x)
+        
+    test = Test()
+    MuitiTask.register(test.add_x,1)
+    SingleTask.call_later(test.add_x,1)
+    looper.start()
+"""
 import asyncio
 import random
 import string
@@ -9,27 +27,20 @@ def get_task_id(length=18):
     return ''.join(random.choice(char) for _ in range(length))
 
 
-__all__ = ("heartbeat","looper","MuitiTask","SingleTask")
+__all__ = ("looper","MuitiTask","SingleTask")
 
 
 class HeartBeat(object):
     """ 心跳
     """
 
-    def __init__(self,project, version, _print_interval,logger=print):
-        self.__project = project
-        self.__version = version
-        self.logger=logger
+    def __init__(self, _print_interval,info_printer=print):
+        self.info_printer=info_printer
         self._count = 0  # 心跳次数
         self._interval = 0.005  # 服务心跳执行时间间隔(秒)
         self._print_interval = _print_interval  # 心跳打印时间间隔(秒)，0为不打印
         self._tasks = {}  # 跟随心跳执行的回调任务列表，由 self.register 注册 {task_id: {...}}
 
-    def get_version(self):
-        return self.__version
-    
-    def get_project(self):
-        return self.__project
 
     @property
     def count(self):
@@ -43,8 +54,8 @@ class HeartBeat(object):
         # 打印心跳次数
         if self._print_interval > 0:
             if self._count % int(self._print_interval* 200) == 0:
-                msg = f'MSG:::HeartBeat.ticker:::do server [{self.__project}:{self.__version}] heartbeat, count:{int(self._count / 200)}'
-                self.logger(msg)
+                msg = f'MSG:::HeartBeat.ticker:::do server heartbeat, count:{int(self._count / 200)}'
+                self.info_printer(msg)
 
         # 设置下一次心跳回调
         asyncio.get_event_loop().call_later(self._interval, self.ticker)
@@ -78,8 +89,8 @@ class HeartBeat(object):
         return task_id
 
     def unregister(self, task_id):
-        """ 注销一个任务
-        @param task_id 任务id
+        """ 
+            unregister a task by task id
         """
         if task_id in self._tasks:
             self._tasks.pop(task_id)
@@ -90,13 +101,12 @@ class Looper:
     """ Asynchronous driven quantitative trading framework.
     """
 
-    def __init__(self, heartbeat, logger=print):
+    def __init__(self, heartbeat ,project , info_printer=print):
         self._heartbeat = heartbeat
         self.loop = None
-        self.__project = heartbeat.get_project()
-        self.__version = heartbeat.get_version()
-        self.logger = logger
-        self.logger(f'MSG:::Looper:::[{self.__project}:{self.__version}] initiating...')
+        self.project = project
+        self.info_printer = info_printer
+        self.info_printer(f'MSG:::Looper:::[project:{self.project}] initiating...')
         self._get_event_loop()
         self._beat_heart()
 
@@ -107,12 +117,12 @@ class Looper:
             self.loop.stop()
         signal.signal(signal.SIGINT, keyboard_interrupt)
 
-        self.logger(f'MSG:::Looper:::Start in \"[{self.__project}:{self.__version}]\" io loop...')
+        self.info_printer(f'MSG:::Looper:::Start in \"[project:{self.project}]\" io loop...')
         self.loop.run_forever()
 
     def stop(self):
         """Stop the event loop."""
-        self.logger(f'MSG:::Looper:::Stop in \"[{self.__project}:{self.__version}]\" io loop...')
+        self.info_printer(f'MSG:::Looper:::Stop in \"[project:{self.project}]\" io loop...')
         self.loop.stop()
 
     def _get_event_loop(self):
@@ -187,4 +197,8 @@ class SingleTask:
                 asyncio.get_event_loop().create_task(f(*args, **kwargs))
             asyncio.get_event_loop().call_later(delay, foo, func, *args)
 
+
+heartbeat = HeartBeat(_print_interval=60)
+MuitiTask.activate(heartbeat)
+looper = Looper(heartbeat,project="my")
 
