@@ -98,7 +98,6 @@ def embed_image_fixed(small_image_path, big_image_path, scale_ratio, position):
 
 
 
-def write_image()
     
 #png透明背景   
 
